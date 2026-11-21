@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="pt-BR" data-lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Danilo Cerqueira · Analytics Engineer</title>
+<meta name="description" content="Analytics Engineer. Plataforma de dados, Power BI, previsão de demanda e assistente RAG no Databricks, contados como estudos de caso.">
+<meta property="og:title" content="Danilo Cerqueira · Analytics Engineer">
+<meta property="og:description" content="A métrica certa importa mais que o algoritmo. Quatro projetos de dados, do ERP à IA generativa.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://danilocerq.github.io/">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://danilocerq.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Danilo Cerqueira, Analytics Engineer: A métrica certa importa mais que o algoritmo.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Danilo Cerqueira">
+<link rel="canonical" href="https://danilocerq.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D0E11'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23C8775A' text-anchor='middle'%3EDC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D0E11; --card: #15171B; --card-2: #1B1E23; --ink: #ECEDEF; --muted: #A0A6AF; --soft: #767C86;
+    --line: rgba(255,255,255,0.08); --line-2: rgba(255,255,255,0.14); --accent: #C8775A; --accent-ink: #E09A7F;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --wrap: 1120px; --gutter: 32px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { background: var(--bg); color: var(--ink); font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* idioma: o mesmo HTML carrega PT e EN, e o atributo data-lang escolhe qual aparece */
+  [data-lang="pt"] [lang="en"], [data-lang="en"] [lang="pt"] { display: none !important; }
+
+  /* navegação */
+  nav { position: sticky; top: 0; z-index: 20; background: rgba(13,14,17,0.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  nav .brand { font-weight: 600; text-decoration: none; letter-spacing: -0.2px; white-space: nowrap; }
+  nav .right { display: flex; align-items: center; gap: 28px; }
+  nav .links { display: flex; gap: 26px; font-size: 15px; }
+  nav .links a { text-decoration: none; color: var(--muted); }
+  nav .links a:hover { color: var(--ink); }
+  .langs { display: inline-flex; border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; font-family: var(--mono); font-size: 12px; }
+  .langs button { background: transparent; color: var(--soft); border: 0; padding: 6px 10px; cursor: pointer; font: inherit; letter-spacing: 1px; }
+  .langs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  /* topo */
+  .hero { padding: 96px 0 88px; }
+  .hero .grid { display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: center; }
+  .eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 1px; color: var(--accent-ink); }
+  .hero h1 { font-size: clamp(38px, 5.6vw, 64px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; margin-top: 18px; text-wrap: balance; }
+  .hero .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin-top: 24px; max-width: 640px; }
+  .hero .lead b { color: var(--ink); font-weight: 500; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--line-2); background: var(--card); }
+  .btn:hover { background: var(--card-2); }
+  .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.primary:hover { background: #fff; }
+  .portrait { position: relative; }
+  .portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); }
+  .certline { display: flex; align-items: center; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+  .certline img { height: 44px; width: auto; }
+  .certline span { font-size: 14px; color: var(--muted); margin-left: 4px; }
+
+  /* linhagem */
+  section.block { padding: 88px 0; border-top: 1px solid var(--line); }
+  .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: 1px; color: var(--accent-ink); }
+  .sec-title { font-size: clamp(28px, 3.6vw, 40px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; margin-top: 10px; text-wrap: balance; }
+  .sec-lead { font-size: 18px; color: var(--muted); margin-top: 14px; max-width: 760px; }
+  .lineage { margin-top: 48px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+  .lineage svg { width: 100%; height: auto; display: block; }
+  .lineage .mob { display: none; }
+  .lineage text { font-family: Inter, "Segoe UI", sans-serif; }
+  .lineage .t { font-size: 15px; font-weight: 600; fill: var(--ink); }
+  .lineage .s { font-size: 12px; fill: var(--muted); font-family: var(--mono); }
+  .lineage .n { font-size: 11px; fill: var(--accent-ink); font-family: var(--mono); letter-spacing: 1px; }
+  .lineage .grp { font-size: 11px; fill: var(--soft); font-family: var(--mono); letter-spacing: 1.5px; }
+  .lineage .node rect { fill: var(--card-2); stroke: var(--line-2); stroke-width: 1; transition: stroke .2s, fill .2s; }
+  .lineage .node.src rect { fill: transparent; stroke-dasharray: 3 4; }
+  .lineage a.node:hover rect, .lineage a.node:focus rect { stroke: var(--accent); fill: #20232A; }
+  .lineage a.node { cursor: pointer; outline: none; }
+  .lineage .edge { fill: none; stroke: rgba(255,255,255,0.22); stroke-width: 1.5; stroke-dasharray: 4 6; animation: flow 1.6s linear infinite; }
+  .lineage .layer rect { fill: rgba(200,119,90,0.10); stroke: rgba(200,119,90,0.35); }
+  .lineage .layer text { font-size: 12px; fill: var(--accent-ink); font-family: var(--mono); }
+  @keyframes flow { to { stroke-dashoffset: -20; } }
+  @media (prefers-reduced-motion: reduce) { .lineage .edge { animation: none; } html { scroll-behavior: auto; } }
+  .lineage .hint { font-size: 13px; color: var(--soft); margin-top: 14px; font-family: var(--mono); }
+
+  /* estudos de caso */
+  .case { display: grid; grid-template-columns: 280px 1fr; gap: 56px; padding: 80px 0; border-top: 1px solid var(--line); }
+  .case:first-of-type { border-top: 0; }
+  .case aside { position: sticky; top: 92px; align-self: start; }
+  .case .num { font-family: var(--mono); font-size: 13px; color: var(--accent-ink); letter-spacing: 1px; }
+  .case h3 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-top: 8px; text-wrap: balance; }
+  .case .role { font-size: 14px; color: var(--muted); margin-top: 10px; }
+  .case .role b { color: var(--ink); font-weight: 500; }
+  .facts { margin-top: 28px; display: grid; gap: 18px; }
+  .fact .v { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+  .fact .l { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+  .stack { margin-top: 28px; font-family: var(--mono); font-size: 12px; color: var(--soft); line-height: 1.9; }
+  .case .body h4 { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin: 40px 0 14px; }
+  .case .body h4:first-child { margin-top: 0; }
+  .case .body > p { font-size: 18px; color: var(--ink); max-width: 720px; }
+  .case .body > p.muted { color: var(--muted); font-size: 16px; }
+  .decisions { list-style: none; counter-reset: d; display: grid; gap: 12px; }
+  .decisions li { counter-increment: d; position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px 20px 64px; }
+  .decisions li::before { content: counter(d, decimal-leading-zero); position: absolute; left: 22px; top: 21px; font-family: var(--mono); font-size: 13px; color: var(--accent-ink); }
+  .decisions .d { font-size: 17px; font-weight: 500; color: var(--ink); line-height: 1.45; }
+  .decisions .why { font-size: 15px; color: var(--muted); margin-top: 6px; line-height: 1.55; }
+  figure { margin: 0; }
+  .shot { display: block; border-radius: 14px; overflow: hidden; background: #F5F7FA; border: 1px solid var(--line); }
+  .shot img { width: 100%; transition: transform .3s ease; }
+  .shot:hover img { transform: scale(1.012); }
+  .shots-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .shots-row > :only-child { grid-column: 1 / -1; }
+  figcaption { font-size: 13px; color: var(--soft); margin-top: 10px; }
+  .callout { background: linear-gradient(180deg, rgba(200,119,90,0.10), rgba(200,119,90,0.04)); border: 1px solid rgba(200,119,90,0.28); border-radius: 14px; padding: 22px 24px; }
+  .callout p { font-size: 16px; color: var(--ink); }
+  .callout p + p { margin-top: 10px; color: var(--muted); }
+
+  /* gráfico do viés (tabela com barras, legível também por leitor de tela) */
+  .chart { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .chart caption { text-align: left; font-size: 16px; font-weight: 600; caption-side: top; }
+  .chart caption small { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  .chart table { width: 100%; border-collapse: collapse; }
+  .chart th { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--soft); text-align: left; padding: 16px 0 8px; }
+  .chart th.r, .chart td.r { text-align: right; }
+  .chart td { padding: 11px 0; border-top: 1px solid var(--line); font-size: 15px; vertical-align: middle; }
+  .chart td.model { width: 32%; }
+  .chart td.model small { display: block; font-size: 12px; color: var(--soft); }
+  .chart td.barcell { width: 38%; padding-right: 18px; }
+  .chart td.r { font-variant-numeric: tabular-nums; width: 15%; }
+  .chart td.bias { font-weight: 600; }
+  .chart td.wape { color: var(--muted); }
+  .track { position: relative; height: 22px; }
+  .track .zero { position: absolute; left: 88%; top: -6px; bottom: -6px; width: 1.5px; background: rgba(255,255,255,0.28); }
+  .track .bar { position: absolute; top: 4px; height: 14px; background: #70767F; }
+  .track .bar.neg { right: 12%; border-radius: 4px 0 0 4px; }
+  .track .bar.pos { left: 88%; border-radius: 0 4px 4px 0; background: var(--accent); min-width: 4px; }
+  .chart .note { font-size: 12px; color: var(--soft); margin-top: 10px; }
+
+  /* experiência */
+  .xp { margin-top: 44px; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .job { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .job .when { font-family: var(--mono); font-size: 13px; color: var(--soft); }
+  .job .org { font-family: var(--mono); font-size: 12px; color: var(--accent-ink); letter-spacing: 1px; }
+  .job h4 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; margin-top: 4px; }
+  .job ul { list-style: none; margin-top: 10px; display: grid; gap: 6px; }
+  .job li { position: relative; padding-left: 18px; font-size: 15px; color: var(--muted); }
+  .job li::before { content: ""; position: absolute; left: 0; top: 11px; width: 8px; height: 2px; background: var(--accent); }
+  .job li b { color: var(--ink); font-weight: 500; }
+
+  /* contato e rodapé */
+  .contact .cta { margin-top: 28px; }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 13px; color: var(--soft); font-family: var(--mono); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    :root { --gutter: 16px; }
+    nav .links { display: none; }
+    .hero { padding: 48px 0 64px; }
+    .hero .grid { grid-template-columns: 1fr; gap: 28px; }
+    .portrait { order: -1; width: 132px; }
+    .portrait img { border-radius: 14px; }
+    .certline img { height: 38px; }
+    section.block { padding: 64px 0; }
+    .lineage { padding: 18px 14px; }
+    .lineage .desk { display: none; }
+    .lineage .mob { display: block; }
+    .case { grid-template-columns: 1fr; gap: 28px; padding: 56px 0; }
+    .case aside { position: static; }
+    .facts { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .fact .v { font-size: 24px; }
+    .decisions li { padding: 18px 16px 18px 52px; }
+    .decisions li::before { left: 16px; top: 19px; }
+    .shots-row { grid-template-columns: 1fr; }
+    .chart { padding: 18px 14px; }
+    .chart td.model { width: 36%; font-size: 13px; }
+    .chart td.barcell { width: 28%; padding-right: 8px; }
+    .chart td { font-size: 13px; }
+    .job { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#topo">Danilo Cerqueira</a>
+    <div class="right">
+      <div class="links">
+        <a href="#pipeline"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
+        <a href="#experiencia"><span lang="pt">Experiência</span><span lang="en">Experience</span></a>
+        <a href="#contato"><span lang="pt">Contato</span><span lang="en">Contact</span></a>
+      </div>
+      <div class="langs" role="group" aria-label="Idioma / Language">
+        <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="topo">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow"><span lang="pt">Analytics Engineer · Rio de Janeiro</span><span lang="en">Analytics Engineer · Rio de Janeiro, Brazil</span></div>
+      <h1><span lang="pt">A métrica certa importa mais que o algoritmo.</span><span lang="en">The right metric matters more than the algorithm.</span></h1>
+      <p class="lead">
+        <span lang="pt">Construo dados de ponta a ponta no Databricks: da ingestão ao dashboard, ao modelo e ao assistente de IA. Numa previsão de demanda, os modelos que pareciam mais precisos item a item <b>erravam de 7% a 11% para baixo na soma</b>. Mostrar isso valeu mais que qualquer ganho de acurácia.</span>
+        <span lang="en">I build data end to end on Databricks: from ingestion to dashboards, models and AI assistants. In a demand forecast, the models that looked most accurate item by item <b>were 7% to 11% too low in total</b>. Showing that was worth more than any accuracy gain.</span>
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#pipeline"><span lang="pt">Ver os projetos</span><span lang="en">See the projects</span></a>
+        <a class="btn" href="https://www.linkedin.com/in/danilocerqueiradados" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Portfólio em PDF ↓</span><span lang="en">Portfolio PDF (PT) ↓</span></a>
+      </div>
+      <div class="certline">
+        <img src="assets/badge-databricks-de.webp" alt="Databricks Certified Data Engineer Associate">
+        <img src="assets/badge-databricks-da.webp" alt="Databricks Certified Data Analyst Associate">
+        <img src="assets/badge-claude-developer.webp" alt="Claude Certified Developer">
+        <img src="assets/badge-claude-associate.webp" alt="Claude Certified Associate">
+        <span>2x Databricks &amp; 2x Claude Certified</span>
+      </div>
+    </div>
+    <div class="portrait"><img src="assets/retrato.webp" alt="Danilo Cerqueira"></div>
+  </div>
+</header>
+
+<section class="block" id="pipeline">
+  <div class="wrap">
+    <div class="kicker">pipeline</div>
+    <h2 class="sec-title"><span lang="pt">Um pipeline, quatro entregas</span><span lang="en">One pipeline, four deliverables</span></h2>
+    <p class="sec-lead">
+      <span lang="pt">Os quatro projetos foram construídos em time para uma rede de varejo náutico com lojas e centros de distribuição, e um alimenta o outro: a plataforma é a base do dashboard, da previsão e do assistente.</span>
+      <span lang="en">All four projects were built as a team for a nautical retail chain with stores and distribution centers, and they feed each other: the platform is the foundation for the dashboard, the forecast and the assistant.</span>
+    </p>
+
+    <div class="lineage">
+      <!-- desktop: fluxo da esquerda para a direita -->
+      <svg class="desk" viewBox="0 0 1000 380" role="img" aria-label="Linhagem: ERP e API do Banco Central alimentam a plataforma de dados, que alimenta o Power BI, a previsão de demanda e o assistente RAG">
+        <text class="grp" x="0" y="24"><tspan lang="pt">FONTES</tspan><tspan lang="en">SOURCES</tspan></text>
+        <text class="grp" x="320" y="24"><tspan lang="pt">PLATAFORMA</tspan><tspan lang="en">PLATFORM</tspan></text>
+        <text class="grp" x="760" y="24"><tspan lang="pt">CONSUMO</tspan><tspan lang="en">CONSUMERS</tspan></text>
+
+        <path class="edge" d="M200,132 C260,132 260,190 320,190"/>
+        <path class="edge" d="M200,252 C260,252 260,190 320,190"/>
+        <path class="edge" d="M660,190 C710,190 710,82 760,82"/>
+        <path class="edge" d="M660,190 C710,190 710,198 760,198"/>
+        <path class="edge" d="M660,190 C710,190 710,314 760,314"/>
+
+        <g class="node src"><rect x="0" y="100" width="200" height="64" rx="10"/>
+          <text class="t" x="16" y="128">ERP · SQL Server</text>
+          <text class="s" x="16" y="148"><tspan lang="pt">24 tabelas via JDBC</tspan><tspan lang="en">24 tables via JDBC</tspan></text></g>
+        <g class="node src"><rect x="0" y="220" width="200" height="64" rx="10"/>
+          <text class="t" x="16" y="248"><tspan lang="pt">API Banco Central</tspan><tspan lang="en">Central Bank API</tspan></text>
+          <text class="s" x="16" y="268"><tspan lang="pt">câmbio, incremental</tspan><tspan lang="en">FX rates, incremental</tspan></text></g>
+
+        <a class="node" href="#case-01"><rect x="320" y="90" width="340" height="200" rx="14"/>
+          <text class="n" x="340" y="120">01</text>
+          <text class="t" x="340" y="144"><tspan lang="pt">Plataforma de dados</tspan><tspan lang="en">Data platform</tspan></text>
+          <g class="layer"><rect x="340" y="164" width="92" height="34" rx="7"/><text x="358" y="186">Bronze</text></g>
+          <g class="layer"><rect x="444" y="164" width="92" height="34" rx="7"/><text x="465" y="186">Silver</text></g>
+          <g class="layer"><rect x="548" y="164" width="92" height="34" rx="7"/><text x="574" y="186">Gold</text></g>
+          <text class="s" x="340" y="230"><tspan lang="pt">dbt · 800+ testes · star schema 6×6</tspan><tspan lang="en">dbt · 800+ tests · 6×6 star schema</tspan></text>
+          <text class="s" x="340" y="252"><tspan lang="pt">Unity Catalog · CI/CD · dev e prod</tspan><tspan lang="en">Unity Catalog · CI/CD · dev and prod</tspan></text></a>
+
+        <a class="node" href="#case-02"><rect x="760" y="50" width="240" height="64" rx="10"/>
+          <text class="n" x="776" y="72">02</text>
+          <text class="t" x="804" y="73">Power BI</text>
+          <text class="s" x="776" y="96"><tspan lang="pt">7 páginas · 38 medidas DAX</tspan><tspan lang="en">7 pages · 38 DAX measures</tspan></text></a>
+        <a class="node" href="#case-03"><rect x="760" y="166" width="240" height="64" rx="10"/>
+          <text class="n" x="776" y="188">03</text>
+          <text class="t" x="804" y="189"><tspan lang="pt">Previsão de demanda</tspan><tspan lang="en">Demand forecast</tspan></text>
+          <text class="s" x="776" y="212"><tspan lang="pt">GLM · viés −2,8% → +0,1%</tspan><tspan lang="en">GLM · bias −2.8% → +0.1%</tspan></text></a>
+        <a class="node" href="#case-04"><rect x="760" y="282" width="240" height="64" rx="10"/>
+          <text class="n" x="776" y="304">04</text>
+          <text class="t" x="804" y="305"><tspan lang="pt">Assistente RAG</tspan><tspan lang="en">RAG assistant</tspan></text>
+          <text class="s" x="776" y="328"><tspan lang="pt">29 docs · respostas com fonte</tspan><tspan lang="en">29 docs · cited answers</tspan></text></a>
+      </svg>
+
+      <!-- celular: fluxo de cima para baixo -->
+      <svg class="mob" viewBox="0 0 340 600" role="img" aria-label="Linhagem dos quatro projetos">
+        <path class="edge" d="M82,74 L82,104 L170,104 L170,124"/>
+        <path class="edge" d="M258,74 L258,104 L170,104 L170,124"/>
+        <path class="edge" d="M24,300 L24,370 L40,370"/>
+        <path class="edge" d="M24,300 L24,460 L40,460"/>
+        <path class="edge" d="M24,300 L24,550 L40,550"/>
+
+        <g class="node src"><rect x="0" y="10" width="164" height="64" rx="10"/>
+          <text class="t" x="12" y="36" style="font-size:14px">ERP · SQL Server</text>
+          <text class="s" x="12" y="56"><tspan lang="pt">24 tabelas</tspan><tspan lang="en">24 tables</tspan></text></g>
+        <g class="node src"><rect x="176" y="10" width="164" height="64" rx="10"/>
+          <text class="t" x="188" y="36" style="font-size:14px"><tspan lang="pt">API Banco Central</tspan><tspan lang="en">Central Bank API</tspan></text>
+          <text class="s" x="188" y="56"><tspan lang="pt">câmbio</tspan><tspan lang="en">FX rates</tspan></text></g>
+
+        <a class="node" href="#case-01"><rect x="0" y="124" width="340" height="176" rx="14"/>
+          <text class="n" x="16" y="152">01</text>
+          <text class="t" x="16" y="176"><tspan lang="pt">Plataforma de dados</tspan><tspan lang="en">Data platform</tspan></text>
+          <g class="layer"><rect x="16" y="194" width="96" height="34" rx="7"/><text x="36" y="216">Bronze</text></g>
+          <g class="layer"><rect x="122" y="194" width="96" height="34" rx="7"/><text x="145" y="216">Silver</text></g>
+          <g class="layer"><rect x="228" y="194" width="96" height="34" rx="7"/><text x="256" y="216">Gold</text></g>
+          <text class="s" x="16" y="256"><tspan lang="pt">dbt · 800+ testes · star schema</tspan><tspan lang="en">dbt · 800+ tests · star schema</tspan></text>
+          <text class="s" x="16" y="278">Unity Catalog · CI/CD</text></a>
+
+        <a class="node" href="#case-02"><rect x="40" y="338" width="300" height="64" rx="10"/>
+          <text class="n" x="56" y="362">02</text>
+          <text class="t" x="84" y="363">Power BI</text>
+          <text class="s" x="56" y="386"><tspan lang="pt">7 páginas · 38 medidas</tspan><tspan lang="en">7 pages · 38 measures</tspan></text></a>
+        <a class="node" href="#case-03"><rect x="40" y="428" width="300" height="64" rx="10"/>
+          <text class="n" x="56" y="452">03</text>
+          <text class="t" x="84" y="453"><tspan lang="pt">Previsão de demanda</tspan><tspan lang="en">Demand forecast</tspan></text>
+          <text class="s" x="56" y="476"><tspan lang="pt">viés −2,8% → +0,1%</tspan><tspan lang="en">bias −2.8% → +0.1%</tspan></text></a>
+        <a class="node" href="#case-04"><rect x="40" y="518" width="300" height="64" rx="10"/>
+          <text class="n" x="56" y="542">04</text>
+          <text class="t" x="84" y="543"><tspan lang="pt">Assistente RAG</tspan><tspan lang="en">RAG assistant</tspan></text>
+          <text class="s" x="56" y="566"><tspan lang="pt">29 docs · com fonte</tspan><tspan lang="en">29 docs · cited</tspan></text></a>
+      </svg>
+      <div class="hint"><span lang="pt">↳ clique num nó para abrir o caso</span><span lang="en">↳ click a node to open the case</span></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- 01 plataforma -->
+    <article class="case" id="case-01">
+      <aside>
+        <div class="num">01</div>
+        <h3><span lang="pt">Plataforma de dados</span><span lang="en">Data platform</span></h3>
+        <p class="role"><span lang="pt">Projeto em time · <b>engenharia e modelagem</b></span><span lang="en">Team project · <b>engineering and modeling</b></span></p>
+        <div class="facts">
+          <div class="fact"><div class="v">24</div><div class="l"><span lang="pt">tabelas do ERP</span><span lang="en">ERP tables</span></div></div>
+          <div class="fact"><div class="v">60+</div><div class="l"><span lang="pt">modelos dbt</span><span lang="en">dbt models</span></div></div>
+          <div class="fact"><div class="v">800+</div><div class="l"><span lang="pt">testes de dados</span><span lang="en">data tests</span></div></div>
+        </div>
+        <div class="stack">Databricks · PySpark · Delta Lake<br>Unity Catalog · dbt · SQL<br>Asset Bundles · Bitbucket Pipelines</div>
+      </aside>
+      <div class="body">
+        <h4><span lang="pt">O problema</span><span lang="en">The problem</span></h4>
+        <p><span lang="pt">Os dados da rede estavam num ERP SQL Server e numa API externa de câmbio. Antes de qualquer dashboard ou modelo, era preciso uma base única, testada e com dados pessoais protegidos, em ambientes separados de desenvolvimento e produção.</span><span lang="en">The chain's data lived in a SQL Server ERP and an external FX-rate API. Before any dashboard or model, it needed a single, tested foundation with personal data protected, in separate development and production environments.</span></p>
+
+        <h4><span lang="pt">Decisões</span><span lang="en">Decisions</span></h4>
+        <ol class="decisions">
+          <li><p class="d"><span lang="pt">Mascarar CPF e e-mail já na camada Bronze.</span><span lang="en">Mask personal IDs and emails right at the Bronze layer.</span></p>
+              <p class="why"><span lang="pt">O job diário confere se todas as tabelas chegaram, aplica o mascaramento por grupo de acesso e só então roda a transformação. Dado pessoal não circula sem proteção em nenhuma camada.</span><span lang="en">The daily job checks that every table arrived, applies masking by access group and only then runs the transformation. Personal data never moves unprotected through any layer.</span></p></li>
+          <li><p class="d"><span lang="pt">Gerar o YAML dos jobs a partir da lista de tabelas.</span><span lang="en">Generate the job YAML from the table list.</span></p>
+              <p class="why"><span lang="pt">Em vez de manter 24 tarefas escritas à mão, a orquestração é gerada automaticamente: adicionar uma tabela é mudar uma linha.</span><span lang="en">Instead of maintaining 24 hand-written tasks, orchestration is generated automatically: adding a table means changing one line.</span></p></li>
+          <li><p class="d"><span lang="pt">Testar em todo pull request, não só na carga.</span><span lang="en">Test on every pull request, not just on load.</span></p>
+              <p class="why"><span lang="pt">O CI roda lint de SQL, dbt build e testes antes do merge. O deploy em produção sai por Service Principal, sem depender da credencial de ninguém.</span><span lang="en">CI runs SQL linting, dbt build and tests before merge. Production deploys go through a Service Principal, independent of anyone's personal credentials.</span></p></li>
+        </ol>
+
+        <h4><span lang="pt">Arquitetura</span><span lang="en">Architecture</span></h4>
+        <figure>
+          <a class="shot" href="assets/plataforma-arquitetura.webp" target="_blank" rel="noopener"><img src="assets/plataforma-arquitetura.webp" alt="Arquitetura da plataforma: fontes, camadas Bronze, Silver e Gold e consumo" loading="lazy"></a>
+          <div class="shots-row">
+            <a class="shot" href="assets/plataforma-modelo-dimensional.webp" target="_blank" rel="noopener"><img src="assets/plataforma-modelo-dimensional.webp" alt="Matriz do modelo dimensional: 6 fatos e 6 dimensões" loading="lazy"></a>
+          </div>
+          <figcaption><span lang="pt">Arquitetura medalhão e o modelo dimensional da camada Gold: 6 fatos que compartilham 6 dimensões. Clique para ampliar.</span><span lang="en">Medallion architecture and the Gold-layer dimensional model: 6 facts sharing 6 dimensions. Click to enlarge.</span></figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 02 power bi -->
+    <article class="case" id="case-02">
+      <aside>
+        <div class="num">02</div>
+        <h3><span lang="pt">Dashboard executivo em Power BI</span><span lang="en">Executive dashboard in Power BI</span></h3>
+        <p class="role"><span lang="pt">Projeto em time · <b>modelo, DAX e validação</b></span><span lang="en">Team project · <b>model, DAX and validation</b></span></p>
+        <div class="facts">
+          <div class="fact"><div class="v">7</div><div class="l"><span lang="pt">páginas</span><span lang="en">pages</span></div></div>
+          <div class="fact"><div class="v">38</div><div class="l"><span lang="pt">medidas DAX</span><span lang="en">DAX measures</span></div></div>
+          <div class="fact"><div class="v">20+</div><div class="l"><span lang="pt">versões até publicar</span><span lang="en">versions before release</span></div></div>
+        </div>
+        <div class="stack">Power BI · DAX · Power Query<br>Databricks SQL Warehouse</div>
+      </aside>
+      <div class="body">
+        <h4><span lang="pt">O problema</span><span lang="en">The problem</span></h4>
+        <p><span lang="pt">A liderança precisava acompanhar vendas, pedidos, clientes e regiões sem depender de consultas técnicas, e confiando nos números que via.</span><span lang="en">Leadership needed to follow sales, orders, customers and regions without relying on technical queries, and trusting the numbers they saw.</span></p>
+
+        <h4><span lang="pt">Decisões</span><span lang="en">Decisions</span></h4>
+        <ol class="decisions">
+          <li><p class="d"><span lang="pt">Planejar antes de abrir o Power BI.</span><span lang="en">Plan before opening Power BI.</span></p>
+              <p class="why"><span lang="pt">Arquitetura de dados, wireframes de cada página e guia visual vieram primeiro, para decidir o que mostrar antes de gastar tempo construindo.</span><span lang="en">Data architecture, page wireframes and a visual guide came first, to agree on what to show before spending time building.</span></p></li>
+          <li><p class="d"><span lang="pt">Cada medida refeita por outra pessoa do time, contra SQL.</span><span lang="en">Every measure re-checked by another teammate, against SQL.</span></p>
+              <p class="why"><span lang="pt">Cenários de teste de dados, performance e UX com verificação dupla: nenhum número chegou à liderança sem ser conferido duas vezes no Databricks.</span><span lang="en">Data, performance and UX test scenarios with double verification: no number reached leadership without being checked twice in Databricks.</span></p></li>
+          <li><p class="d"><span lang="pt">Projetar para quem não é técnico.</span><span lang="en">Design for non-technical users.</span></p>
+              <p class="why"><span lang="pt">Painel de filtros sob demanda, KPIs com cor de variação, drill-through para o histórico de cada cliente e uma página de manual com o glossário das métricas.</span><span lang="en">An on-demand filter panel, KPIs colored by change, drill-through into each customer's history and a manual page with a metrics glossary.</span></p></li>
+        </ol>
+
+        <h4><span lang="pt">Resultado</span><span lang="en">Result</span></h4>
+        <figure>
+          <a class="shot" href="assets/bi-visao-executiva.webp" target="_blank" rel="noopener"><img src="assets/bi-visao-executiva.webp" alt="Visão executiva do dashboard" loading="lazy"></a>
+          <div class="shots-row">
+            <a class="shot" href="assets/bi-regiao.webp" target="_blank" rel="noopener"><img src="assets/bi-regiao.webp" alt="Análise por região" loading="lazy"></a>
+            <a class="shot" href="assets/bi-clientes.webp" target="_blank" rel="noopener"><img src="assets/bi-clientes.webp" alt="Análise de clientes" loading="lazy"></a>
+          </div>
+          <figcaption><span lang="pt">Visão executiva, região e clientes, sobre 12 tabelas Gold. Publicado no Power BI Service.</span><span lang="en">Executive overview, regions and customers, on top of 12 Gold tables. Published to the Power BI Service.</span></figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 03 previsão de demanda: o caso mais profundo -->
+    <article class="case" id="case-03">
+      <aside>
+        <div class="num">03</div>
+        <h3><span lang="pt">Previsão de demanda por produto e loja</span><span lang="en">Demand forecast by product and store</span></h3>
+        <p class="role"><span lang="pt">Projeto em time · <b>minha frente principal</b></span><span lang="en">Team project · <b>my main workstream</b></span></p>
+        <div class="facts">
+          <div class="fact"><div class="v"><span lang="pt">6.054</span><span lang="en">6,054</span></div><div class="l"><span lang="pt">séries produto × local</span><span lang="en">product × location series</span></div></div>
+          <div class="fact"><div class="v"><span lang="pt">72.648</span><span lang="en">72,648</span></div><div class="l"><span lang="pt">previsões no backtest</span><span lang="en">backtest predictions</span></div></div>
+          <div class="fact"><div class="v"><span lang="pt">+0,1%</span><span lang="en">+0.1%</span></div><div class="l"><span lang="pt">viés final (era −2,8%)</span><span lang="en">final bias (was −2.8%)</span></div></div>
+        </div>
+        <div class="stack">Python · pandas · scikit-learn<br>XGBoost · PySpark · dbt · Delta</div>
+      </aside>
+      <div class="body">
+        <h4><span lang="pt">O problema</span><span lang="en">The problem</span></h4>
+        <p><span lang="pt">Prever a demanda dos próximos 3 meses para cada produto em cada loja e centro de distribuição, numa base em que metade dos casos não tem venda nenhuma. A previsão alimenta compra e reposição.</span><span lang="en">Forecast the next 3 months of demand for every product in every store and distribution center, in a dataset where half the cases have no sales at all. The forecast drives purchasing and replenishment.</span></p>
+
+        <h4><span lang="pt">Decisões</span><span lang="en">Decisions</span></h4>
+        <ol class="decisions">
+          <li><p class="d"><span lang="pt">Prever a partir da categoria na loja, não do histórico de cada produto.</span><span lang="en">Forecast from the category in each store, not from each product's history.</span></p>
+              <p class="why"><span lang="pt">A análise exploratória mostrou que o histórico de um produto não prevê a venda seguinte. O nível da categoria na loja, a sazonalidade e a tendência, sim. Isso virou um baseline estatístico com limites de 75% e 90% que se confirmaram na prática (75,2% e 89,8% de cobertura).</span><span lang="en">Exploratory analysis showed a product's own history doesn't predict its next sale, while the category level in the store, seasonality and trend do. That became a statistical baseline whose 75% and 90% intervals held up in practice (75.2% and 89.8% coverage).</span></p></li>
+          <li><p class="d"><span lang="pt">Medir o viés, e não só o erro.</span><span lang="en">Measure bias, not just error.</span></p>
+              <p class="why"><span lang="pt">Com demanda rala, o erro item a item fica perto de 86% em qualquer modelo. O que muda a decisão de compra é errar sempre para o mesmo lado: um viés de −2,8% significa comprar menos do que se vende, trimestre após trimestre.</span><span lang="en">With sparse demand, item-level error sits near 86% for any model. What changes a purchasing decision is being wrong in the same direction: a −2.8% bias means buying less than you sell, quarter after quarter.</span></p></li>
+          <li><p class="d"><span lang="pt">Usar o baseline como offset no GLM Poisson.</span><span lang="en">Use the baseline as an offset in a Poisson GLM.</span></p>
+              <p class="why"><span lang="pt">Em vez de reaprender a mesma conta do zero, o modelo só precisa explicar o que o baseline erra. Hiperparâmetros escolhidos só na validação, 12 cortes temporais e o teste lido uma única vez.</span><span lang="en">Instead of relearning the same math from scratch, the model only has to explain what the baseline gets wrong. Hyperparameters chosen on validation only, 12 time-based folds and the test set read exactly once.</span></p></li>
+        </ol>
+
+        <h4><span lang="pt">Resultado</span><span lang="en">Result</span></h4>
+        <div class="chart">
+          <table>
+            <caption><span lang="pt">Viés no teste por modelo</span><span lang="en">Test-set bias by model</span>
+              <small><span lang="pt">Quanto a soma prevista ficou abaixo (−) ou acima (+) do que foi vendido</span><span lang="en">How far the total forecast landed below (−) or above (+) actual sales</span></small></caption>
+            <thead><tr><th><span lang="pt">Modelo</span><span lang="en">Model</span></th><th aria-label="bar"></th><th class="r"><span lang="pt">Viés</span><span lang="en">Bias</span></th><th class="r"><span lang="pt">Erro*</span><span lang="en">Error*</span></th></tr></thead>
+            <tbody>
+              <tr><td class="model">Baseline<small><span lang="pt">referência estatística</span><span lang="en">statistical reference</span></small></td><td class="barcell"><div class="track"><div class="zero"></div><div class="bar neg" style="width:22.4%"></div></div></td><td class="r bias"><span lang="pt">−2,8%</span><span lang="en">−2.8%</span></td><td class="r wape"><span lang="pt">11,9%</span><span lang="en">11.9%</span></td></tr>
+              <tr><td class="model"><span lang="pt">Regressão linear</span><span lang="en">Linear regression</span></td><td class="barcell"><div class="track"><div class="zero"></div><div class="bar neg" style="width:61.6%"></div></div></td><td class="r bias"><span lang="pt">−7,7%</span><span lang="en">−7.7%</span></td><td class="r wape"><span lang="pt">12,6%</span><span lang="en">12.6%</span></td></tr>
+              <tr><td class="model">XGBoost</td><td class="barcell"><div class="track"><div class="zero"></div><div class="bar neg" style="width:87.2%"></div></div></td><td class="r bias"><span lang="pt">−10,9%</span><span lang="en">−10.9%</span></td><td class="r wape"><span lang="pt">15,6%</span><span lang="en">15.6%</span></td></tr>
+              <tr><td class="model">GLM Poisson<small><span lang="pt">escolhido</span><span lang="en">selected</span></small></td><td class="barcell"><div class="track"><div class="zero"></div><div class="bar pos" style="width:0.8%"></div></div></td><td class="r bias"><span lang="pt">+0,1%</span><span lang="en">+0.1%</span></td><td class="r wape"><span lang="pt">11,8%</span><span lang="en">11.8%</span></td></tr>
+            </tbody>
+          </table>
+          <div class="note"><span lang="pt">* WAPE por categoria × loja. O GLM empata com o baseline no erro, elimina o viés e ganha em 7 dos 12 cortes.</span><span lang="en">* WAPE at category × store level. The GLM ties the baseline on error, removes the bias and wins in 7 of 12 folds.</span></div>
+        </div>
+
+        <h4><span lang="pt">O que não funcionou</span><span lang="en">What didn't work</span></h4>
+        <div class="callout">
+          <p><span lang="pt">Regressão Linear e XGBoost pareciam melhores item a item, mas na soma previam 7,7% e 10,9% abaixo do real. Nenhum dos dois superou o baseline, e isso foi documentado em vez de escondido.</span><span lang="en">Linear regression and XGBoost looked better item by item, but in total they forecast 7.7% and 10.9% below actuals. Neither beat the baseline, and that was documented rather than hidden.</span></p>
+          <p><span lang="pt">O XGBoost calibrado tinha viés de 0,0% na validação e −10,9% no teste. A lição: escolher numa validação curta engana.</span><span lang="en">The calibrated XGBoost showed 0.0% bias on validation and −10.9% on test. The lesson: choosing on a short validation window is misleading.</span></p>
+        </div>
+
+        <h4><span lang="pt">Desdobramentos</span><span lang="en">Follow-ups</span></h4>
+        <p class="muted"><span lang="pt">A previsão de setembro a novembro de 2026 foi gravada em tabelas Delta e virou base para duas análises: crescimento por centro de distribuição e loja, e um estudo de expansão da rede que mostrou que despachar pela unidade mais próxima reduziria a distância média de entrega em 62%, e indicou a região Norte para o próximo armazém.</span><span lang="en">The September–November 2026 forecast was written to Delta tables and fed two analyses: growth by distribution center and store, and a network expansion study showing that shipping from the nearest unit would cut average delivery distance by 62%, pointing to the North region for the next warehouse.</span></p>
+      </div>
+    </article>
+
+    <!-- 04 rag -->
+    <article class="case" id="case-04">
+      <aside>
+        <div class="num">04</div>
+        <h3><span lang="pt">Assistente RAG sobre a documentação</span><span lang="en">RAG assistant over the docs</span></h3>
+        <p class="role"><span lang="pt">Projeto em time · <b>do MVP à produção</b></span><span lang="en">Team project · <b>from MVP to production</b></span></p>
+        <div class="facts">
+          <div class="fact"><div class="v">29</div><div class="l"><span lang="pt">documentos técnicos</span><span lang="en">technical documents</span></div></div>
+          <div class="fact"><div class="v">815</div><div class="l"><span lang="pt">trechos indexados</span><span lang="en">indexed chunks</span></div></div>
+          <div class="fact"><div class="v">35</div><div class="l"><span lang="pt">casos de avaliação</span><span lang="en">evaluation cases</span></div></div>
+        </div>
+        <div class="stack">Vector Search · Model Serving<br>Llama 3.3 70B · Databricks Apps<br>Streamlit · Unity Catalog</div>
+      </aside>
+      <div class="body">
+        <h4><span lang="pt">O problema</span><span lang="en">The problem</span></h4>
+        <p><span lang="pt">A documentação técnica da plataforma tinha 29 documentos. Encontrar a resposta certa levava tempo, principalmente no onboarding, e um assistente de IA não podia, em hipótese nenhuma, expor dados operacionais.</span><span lang="en">The platform's technical documentation had 29 documents. Finding the right answer took time, especially during onboarding, and an AI assistant could never expose operational data.</span></p>
+
+        <h4><span lang="pt">Decisões</span><span lang="en">Decisions</span></h4>
+        <ol class="decisions">
+          <li><p class="d"><span lang="pt">Bloquear perguntas sobre dados operacionais antes da busca.</span><span lang="en">Block questions about operational data before retrieval.</span></p>
+              <p class="why"><span lang="pt">Em vez de confiar só no prompt, um guardrail barra esse tipo de pergunta antes de qualquer contexto ser recuperado. Um health check testa, com a identidade do próprio assistente, se ela alcança o Data Warehouse: segurança verificada, não presumida.</span><span lang="en">Rather than relying on the prompt alone, a guardrail stops those questions before any context is retrieved. A health check tests, using the assistant's own identity, whether it can reach the Data Warehouse: security verified, not assumed.</span></p></li>
+          <li><p class="d"><span lang="pt">Dividir por seção, levando o caminho de títulos para cada trecho.</span><span lang="en">Chunk by section, carrying the heading path into each chunk.</span></p>
+              <p class="why"><span lang="pt">Cada trecho começa com a hierarquia de títulos e repete o cabeçalho das tabelas quando elas são divididas, para nenhum pedaço perder o contexto. As citações são conferidas contra os trechos recuperados.</span><span lang="en">Each chunk starts with its heading hierarchy and repeats table headers when tables are split, so no piece loses context. Citations are checked against the retrieved chunks.</span></p></li>
+          <li><p class="d"><span lang="pt">Avaliar antes de publicar.</span><span lang="en">Evaluate before shipping.</span></p>
+              <p class="why"><span lang="pt">Golden Dataset com 35 perguntas, incluindo falta de contexto e tentativas de acesso indevido, métricas de recuperação (recall@k, precision@k, MRR) e LLM-as-a-judge para checar se cada afirmação tem base nos documentos.</span><span lang="en">A 35-question Golden Dataset, including missing-context cases and access attempts, retrieval metrics (recall@k, precision@k, MRR) and LLM-as-a-judge to check that every claim is grounded in the docs.</span></p></li>
+        </ol>
+
+        <h4><span lang="pt">Arquitetura</span><span lang="en">Architecture</span></h4>
+        <figure>
+          <a class="shot" href="assets/rag-arquitetura.webp" target="_blank" rel="noopener"><img src="assets/rag-arquitetura.webp" alt="Arquitetura do assistente RAG" loading="lazy"></a>
+          <figcaption><span lang="pt">Ingestão, busca semântica, geração com citações, camadas de segurança e avaliação, publicado como app no Databricks Apps.</span><span lang="en">Ingestion, semantic search, cited generation, security layers and evaluation, shipped as an app on Databricks Apps.</span></figcaption>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="block" id="experiencia">
+  <div class="wrap">
+    <div class="kicker"><span lang="pt">experiência</span><span lang="en">experience</span></div>
+    <h2 class="sec-title"><span lang="pt">Comecei do lado de quem usa o dado.</span><span lang="en">I started on the side of the people who use the data.</span></h2>
+    <p class="sec-lead"><span lang="pt">Por isso construo pensando em quem de fato vai ler o resultado. Tecnólogo em Ciência de Dados, inglês fluente.</span><span lang="en">That's why I build for the people who will actually read the result. Data Science graduate, fluent in English.</span></p>
+    <div class="xp">
+      <div class="job">
+        <div class="when"><span lang="pt">mai 2026 – nov 2026</span><span lang="en">May 2026 – Nov 2026</span><br><span lang="pt">remoto</span><span lang="en">remote</span></div>
+        <div>
+          <div class="org">INDICIUM AI</div>
+          <h4>Analytics Engineer Trainee · <span lang="pt">Programa Lighthouse</span><span lang="en">Lighthouse Program</span></h4>
+          <ul>
+            <li><span lang="pt"><b>Time Athena:</b> os quatro projetos acima, com a previsão de demanda como minha frente principal.</span><span lang="en"><b>Team Athena:</b> the four projects above, with the demand forecast as my main workstream.</span></li>
+            <li><span lang="pt"><b>Time Sirius:</b> automação Snowflake → Google Sheets que levou a atualização diária de ~15 min para ~20 s (−98%), validada em 942 tasks sem divergência.</span><span lang="en"><b>Team Sirius:</b> a Snowflake → Google Sheets automation that cut the daily refresh from ~15 min to ~20 s (−98%), validated on 942 tasks with zero mismatches.</span></li>
+            <li><span lang="pt">A automação virou template replicado em outros projetos, e uma regra única de classificação substituiu 22 fórmulas manuais.</span><span lang="en">The automation became a template reused across projects, and a single classification rule replaced 22 manual formulas.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><span lang="pt">nov 2025 – mai 2026</span><span lang="en">Nov 2025 – May 2026</span></div>
+        <div>
+          <div class="org">DATA MUNDO</div>
+          <h4><span lang="pt">Analista de Dados</span><span lang="en">Data Analyst</span></h4>
+          <ul>
+            <li><span lang="pt">Levantamento de requisitos com as áreas de negócio e tradução das demandas em soluções analíticas.</span><span lang="en">Requirements gathering with business teams, turning their needs into analytics solutions.</span></li>
+            <li><span lang="pt">ETL com SQL e Pentaho, dashboards em Power BI e Tableau e acompanhamento de KPIs e OKRs.</span><span lang="en">ETL with SQL and Pentaho, dashboards in Power BI and Tableau, and KPI and OKR tracking.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">2024 – 2026</div>
+        <div>
+          <div class="org">UNINTER</div>
+          <h4><span lang="pt">Tecnólogo em Ciência de Dados</span><span lang="en">Undergraduate degree in Data Science (Technologist)</span></h4>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><span lang="pt">certificações</span><span lang="en">certifications</span></div>
+        <div>
+          <ul>
+            <li>Databricks Certified Data Engineer Associate</li>
+            <li>Databricks Certified Data Analyst Associate</li>
+            <li>Claude Certified Developer · Foundations (Anthropic)</li>
+            <li>Claude Certified Associate · Foundations (Anthropic)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block contact" id="contato">
+  <div class="wrap">
+    <div class="kicker"><span lang="pt">contato</span><span lang="en">contact</span></div>
+    <h2 class="sec-title"><span lang="pt">Vamos conversar.</span><span lang="en">Let's talk.</span></h2>
+    <p class="sec-lead"><span lang="pt">O jeito mais rápido de falar comigo é pelo LinkedIn.</span><span lang="en">The fastest way to reach me is on LinkedIn.</span></p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/danilocerqueiradados" target="_blank" rel="noopener"><span lang="pt">Falar no LinkedIn ↗</span><span lang="en">Message me on LinkedIn ↗</span></a>
+      <a class="btn" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Portfólio em PDF ↓</span><span lang="en">Portfolio PDF (PT) ↓</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Danilo Cerqueira</span>
+    <span>Rio de Janeiro, <span lang="pt">Brasil</span><span lang="en">Brazil</span></span>
+  </div>
+</footer>
+
+<script>
+  // Idioma: ?lang=en na URL > escolha salva > idioma do navegador. Sem JS, fica em português.
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('[data-set-lang]');
+    function setLang(l) {
+      root.setAttribute('data-lang', l);
+      root.setAttribute('lang', l === 'pt' ? 'pt-BR' : 'en');
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === l)); });
+      try { localStorage.setItem('lang', l); } catch (e) {}
+    }
+    var fromUrl = null, saved = null;
+    try { fromUrl = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var nav = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+    var start = (fromUrl === 'en' || fromUrl === 'pt') ? fromUrl : (saved === 'en' || saved === 'pt') ? saved : nav;
+    setLang(start);
+    buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); }); });
+  })();
+</script>
+</body>
+</html>
