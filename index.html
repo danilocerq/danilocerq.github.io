@@ -157,6 +157,17 @@
   .job li::before { content: ""; position: absolute; left: 0; top: 11px; width: 8px; height: 2px; background: var(--accent); }
   .job li b { color: var(--ink); font-weight: 500; }
 
+  /* sobre mim */
+  .about .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: start; }
+  .about .story p { font-size: 18px; color: var(--muted); margin-top: 16px; max-width: 600px; }
+  .about .story p:first-of-type { margin-top: 22px; }
+  .about .side { display: grid; gap: 14px; }
+  .about .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .about .label { font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); }
+  .about .card p { font-size: 15.5px; color: var(--muted); margin-top: 10px; }
+  .about .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding: 0; list-style: none; }
+  .about .chips li { font-size: 13.5px; padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink); }
+
   /* contato e rodapé */
   .contact .cta { margin-top: 28px; }
   footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 13px; color: var(--soft); font-family: var(--mono); }
@@ -186,6 +197,7 @@
     .chart td.barcell { width: 28%; padding-right: 8px; }
     .chart td { font-size: 13px; }
     .job { grid-template-columns: 1fr; gap: 6px; }
+    .about .grid { grid-template-columns: 1fr; gap: 32px; }
   }
 </style>
 </head>
@@ -198,6 +210,7 @@
       <div class="links">
         <a href="#pipeline"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
         <a href="#experiencia"><span lang="pt">Experiência</span><span lang="en">Experience</span></a>
+        <a href="#sobre"><span lang="pt">Sobre mim</span><span lang="en">About</span></a>
         <a href="#contato"><span lang="pt">Contato</span><span lang="en">Contact</span></a>
       </div>
       <div class="langs" role="group" aria-label="Idioma / Language">
@@ -540,6 +553,41 @@
             <li>Databricks Certified Data Analyst Associate</li>
             <li>Claude Certified Developer · Foundations (Anthropic)</li>
             <li>Claude Certified Associate · Foundations (Anthropic)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block about" id="sobre">
+  <div class="wrap">
+    <div class="grid">
+      <div class="story">
+        <div class="kicker"><span lang="pt">me conheça melhor</span><span lang="en">get to know me</span></div>
+        <h2 class="sec-title"><span lang="pt">Quase fui para a Psicologia.</span><span lang="en">I almost went into Psychology.</span></h2>
+        <p><span lang="pt">Terminei o ensino médio sem saber o que queria fazer. Passei um bom tempo dividido entre virar desenvolvedor e cursar Psicologia, até conhecer ciência de dados: um jeito de escrever código para entender como as pessoas se comportam.</span><span lang="en">I finished high school not knowing what I wanted to do. I spent a long time torn between becoming a developer and studying Psychology, until I found data science: a way to write code to understand how people behave.</span></p>
+        <p><span lang="pt">Comecei a estudar por conta no início de 2024, entrei na faculdade em julho e, no fim de 2025, já trabalhava como analista de dados.</span><span lang="en">I started studying on my own in early 2024, began my degree that July and, by late 2025, was working as a data analyst.</span></p>
+      </div>
+      <div class="side">
+        <div class="card">
+          <div class="label"><span lang="pt">fora do trabalho</span><span lang="en">outside work</span></div>
+          <p><span lang="pt">Venho de uma família de músicos e toco bateria, guitarra, violão e baixo.</span><span lang="en">I come from a family of musicians and play drums, electric guitar, acoustic guitar and bass.</span></p>
+          <ul class="chips">
+            <li><span lang="pt">Xadrez</span><span lang="en">Chess</span></li>
+            <li><span lang="pt">Música</span><span lang="en">Music</span></li>
+            <li><span lang="pt">Videogame</span><span lang="en">Video games</span></li>
+            <li><span lang="pt">Séries e filmes</span><span lang="en">Series and movies</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="label"><span lang="pt">o que procuro</span><span lang="en">what I'm looking for</span></div>
+          <p><span lang="pt">Vagas em dados, presencial ou híbrido no Rio de Janeiro, ou remoto.</span><span lang="en">Data roles, on-site or hybrid in Rio de Janeiro, or remote.</span></p>
+          <ul class="chips">
+            <li>Analytics Engineer</li>
+            <li><span lang="pt">Engenheiro de Dados</span><span lang="en">Data Engineer</span></li>
+            <li><span lang="pt">Analista de Dados / BI</span><span lang="en">Data / BI Analyst</span></li>
+            <li><span lang="pt">Cientista de Dados</span><span lang="en">Data Scientist</span></li>
           </ul>
         </div>
       </div>
