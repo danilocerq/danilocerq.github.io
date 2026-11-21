@@ -233,6 +233,7 @@
       <div class="cta">
         <a class="btn primary" href="#pipeline"><span lang="pt">Ver os projetos</span><span lang="en">See the projects</span></a>
         <a class="btn" href="https://www.linkedin.com/in/danilocerqueiradados" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="assets/curriculo-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Currículo ↓</span><span lang="en">CV (PT) ↓</span></a>
         <a class="btn" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Portfólio em PDF ↓</span><span lang="en">Portfolio PDF (PT) ↓</span></a>
       </div>
       <div class="certline">
@@ -599,9 +600,13 @@
   <div class="wrap">
     <div class="kicker"><span lang="pt">contato</span><span lang="en">contact</span></div>
     <h2 class="sec-title"><span lang="pt">Vamos conversar.</span><span lang="en">Let's talk.</span></h2>
-    <p class="sec-lead"><span lang="pt">O jeito mais rápido de falar comigo é pelo LinkedIn.</span><span lang="en">The fastest way to reach me is on LinkedIn.</span></p>
+    <p class="sec-lead"><span lang="pt">Me chama no LinkedIn ou manda um <span style="white-space:nowrap">e-mail</span>.</span><span lang="en">Reach me on LinkedIn or send me an email.</span></p>
     <div class="cta">
       <a class="btn primary" href="https://www.linkedin.com/in/danilocerqueiradados" target="_blank" rel="noopener"><span lang="pt">Falar no LinkedIn ↗</span><span lang="en">Message me on LinkedIn ↗</span></a>
+      <!-- O endereço é montado pelo script no fim da página, para não ficar legível no HTML para robôs de spam. -->
+      <a class="btn" id="email-btn" href="#contato"><span class="mail-text">e-mail</span></a>
+      <noscript><span class="btn">danilocsantos2005 [arroba] gmail [ponto] com</span></noscript>
+      <a class="btn" href="assets/curriculo-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Currículo ↓</span><span lang="en">CV (PT) ↓</span></a>
       <a class="btn" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Portfólio em PDF ↓</span><span lang="en">Portfolio PDF (PT) ↓</span></a>
     </div>
   </div>
@@ -632,6 +637,15 @@
     var start = (fromUrl === 'en' || fromUrl === 'pt') ? fromUrl : (saved === 'en' || saved === 'pt') ? saved : nav;
     setLang(start);
     buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); }); });
+  })();
+
+  // E-mail montado em partes: o endereço completo não aparece no código-fonte.
+  (function () {
+    var a = document.getElementById('email-btn');
+    if (!a) return;
+    var addr = ['danilocsantos2005', ['gmail', 'com'].join('.')].join('@');
+    a.href = 'mailto:' + addr;
+    a.querySelector('.mail-text').textContent = addr;
   })();
 </script>
 </body>
