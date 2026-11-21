@@ -119,7 +119,7 @@
   .shot img { width: 100%; transition: transform .3s ease; }
   .shot:hover img { transform: scale(1.012); }
   .shots-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-  .shots-row > :only-child { grid-column: 1 / -1; }
+  .shots-row > :only-child, .shots-row > .full { grid-column: 1 / -1; }
   figcaption { font-size: 13px; color: var(--soft); margin-top: 10px; }
   .callout { background: linear-gradient(180deg, rgba(200,119,90,0.10), rgba(200,119,90,0.04)); border: 1px solid rgba(200,119,90,0.28); border-radius: 14px; padding: 22px 24px; }
   .callout p { font-size: 16px; color: var(--ink); }
@@ -234,7 +234,7 @@
         <a class="btn primary" href="#pipeline"><span lang="pt">Ver os projetos</span><span lang="en">See the projects</span></a>
         <a class="btn" href="https://www.linkedin.com/in/danilocerqueiradados" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a class="btn" lang="pt" href="assets/curriculo-danilo-cerqueira.pdf" target="_blank" rel="noopener">Currículo ↓</a><a class="btn" lang="en" href="assets/resume-danilo-cerqueira-en.pdf" target="_blank" rel="noopener">Resume ↓</a>
-        <a class="btn" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Portfólio em PDF ↓</span><span lang="en">Portfolio PDF (PT) ↓</span></a>
+        <a class="btn" lang="pt" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener">Portfólio em PDF ↓</a><a class="btn" lang="en" href="assets/portfolio-danilo-cerqueira-en.pdf" target="_blank" rel="noopener">Portfolio PDF ↓</a>
       </div>
       <div class="certline">
         <img src="assets/badge-databricks-de.webp" alt="Databricks Certified Data Engineer Associate">
@@ -371,9 +371,11 @@
 
         <h4><span lang="pt">Arquitetura</span><span lang="en">Architecture</span></h4>
         <figure>
-          <a class="shot" href="assets/plataforma-arquitetura.webp" target="_blank" rel="noopener"><img src="assets/plataforma-arquitetura.webp" alt="Arquitetura da plataforma: fontes, camadas Bronze, Silver e Gold e consumo" loading="lazy"></a>
+          <a class="shot" lang="pt" href="assets/plataforma-arquitetura.webp" target="_blank" rel="noopener"><img src="assets/plataforma-arquitetura.webp" alt="Arquitetura da plataforma: fontes, camadas Bronze, Silver e Gold e consumo" loading="lazy"></a>
+          <a class="shot" lang="en" href="assets/plataforma-arquitetura-en.webp" target="_blank" rel="noopener"><img src="assets/plataforma-arquitetura-en.webp" alt="Platform architecture: sources, Bronze, Silver and Gold layers, and consumers" loading="lazy"></a>
           <div class="shots-row">
-            <a class="shot" href="assets/plataforma-modelo-dimensional.webp" target="_blank" rel="noopener"><img src="assets/plataforma-modelo-dimensional.webp" alt="Matriz do modelo dimensional: 6 fatos e 6 dimensões" loading="lazy"></a>
+            <a class="shot full" lang="pt" href="assets/plataforma-modelo-dimensional.webp" target="_blank" rel="noopener"><img src="assets/plataforma-modelo-dimensional.webp" alt="Matriz do modelo dimensional: 6 fatos e 6 dimensões" loading="lazy"></a>
+            <a class="shot full" lang="en" href="assets/plataforma-modelo-dimensional-en.webp" target="_blank" rel="noopener"><img src="assets/plataforma-modelo-dimensional-en.webp" alt="Dimensional model matrix: 6 facts and 6 dimensions" loading="lazy"></a>
           </div>
           <figcaption><span lang="pt">Arquitetura medalhão e o modelo dimensional da camada Gold: 6 fatos que compartilham 6 dimensões. Clique para ampliar.</span><span lang="en">Medallion architecture and the Gold-layer dimensional model: 6 facts sharing 6 dimensions. Click to enlarge.</span></figcaption>
         </figure>
@@ -502,7 +504,8 @@
 
         <h4><span lang="pt">Arquitetura</span><span lang="en">Architecture</span></h4>
         <figure>
-          <a class="shot" href="assets/rag-arquitetura.webp" target="_blank" rel="noopener"><img src="assets/rag-arquitetura.webp" alt="Arquitetura do assistente RAG" loading="lazy"></a>
+          <a class="shot" lang="pt" href="assets/rag-arquitetura.webp" target="_blank" rel="noopener"><img src="assets/rag-arquitetura.webp" alt="Arquitetura do assistente RAG" loading="lazy"></a>
+          <a class="shot" lang="en" href="assets/rag-arquitetura-en.webp" target="_blank" rel="noopener"><img src="assets/rag-arquitetura-en.webp" alt="RAG assistant architecture" loading="lazy"></a>
           <figcaption><span lang="pt">Ingestão, busca semântica, geração com citações, camadas de segurança e avaliação, publicado como app no Databricks Apps.</span><span lang="en">Ingestion, semantic search, cited generation, security layers and evaluation, shipped as an app on Databricks Apps.</span></figcaption>
         </figure>
       </div>
@@ -607,7 +610,7 @@
       <a class="btn" id="email-btn" href="#contato"><span class="mail-text">e-mail</span></a>
       <noscript><span class="btn">danilocsantos2005 [arroba] gmail [ponto] com</span></noscript>
       <a class="btn" lang="pt" href="assets/curriculo-danilo-cerqueira.pdf" target="_blank" rel="noopener">Currículo ↓</a><a class="btn" lang="en" href="assets/resume-danilo-cerqueira-en.pdf" target="_blank" rel="noopener">Resume ↓</a>
-      <a class="btn" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener"><span lang="pt">Portfólio em PDF ↓</span><span lang="en">Portfolio PDF (PT) ↓</span></a>
+      <a class="btn" lang="pt" href="assets/portfolio-danilo-cerqueira.pdf" target="_blank" rel="noopener">Portfólio em PDF ↓</a><a class="btn" lang="en" href="assets/portfolio-danilo-cerqueira-en.pdf" target="_blank" rel="noopener">Portfolio PDF ↓</a>
     </div>
   </div>
 </section>
